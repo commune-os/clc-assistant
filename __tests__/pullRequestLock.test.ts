@@ -1,7 +1,7 @@
 import * as core from '@actions/core'
 import * as github from '@actions/github'
 import { context } from '@actions/github'
-import { getclas } from '../src/checkcla'
+import { getclcs } from '../src/checkclc'
 import { lockPullRequest } from '../src/pullRequestLock'
 import { run } from '../src/main'
 import { mocked } from 'ts-jest/utils'

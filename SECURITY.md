@@ -1,6 +1,6 @@
 # Security Vulnerabilities
 
-The CLA Assistant is built with security and data privacy in mind to ensure your data is safe.
+The CLC Assistant is built with security and data privacy in mind to ensure your data is safe.
 
 ## Reporting
 
@@ -10,8 +10,6 @@ We are grateful for security researchers and users reporting a vulnerability to 
 
 For reporting a vulnerability, please use the Vulnerability Report Form for Security Researchers on [SAP Trust Center](https://www.sap.com/about/trust-center/security/incident-management.html).
 Please address questions about data privacy, security concepts, and other media requests using the Vulnerability Report Form for Security Researchers on SAP Trust Center.
-
-
 
 ## Disclosure Handling
 

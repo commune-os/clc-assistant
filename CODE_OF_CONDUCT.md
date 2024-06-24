@@ -33,7 +33,7 @@ Examples of unacceptable behavior by participants include:
 
 ## Our Responsibilities
 
-Project maintainers are responsible for clarifying the standards of acceptable
+Project maintainers are responsible for clcrifying the standards of acceptable
 behavior and are expected to take appropriate and fair corrective action in
 response to any instances of unacceptable behavior.
 
@@ -50,7 +50,7 @@ when an individual is representing the project or its community. Examples of
 representing a project or community include using an official project e-mail
 address, posting via an official social media account, or acting as an appointed
 representative at an online or offline event. Representation of a project may be
-further defined and clarified by project maintainers.
+further defined and clcrified by project maintainers.
 
 ## Enforcement
 

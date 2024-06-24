@@ -29,7 +29,7 @@ export async function createFile(contentBinary): Promise<any> {
     path: input.getPathToSignatures(),
     message:
       input.getCreateFileCommitMessage() ||
-      'Creating file for storing CLA Signatures',
+      'Creating file for storing CLC Signatures',
     content: contentBinary,
     branch: input.getBranch()
   })
@@ -37,7 +37,7 @@ export async function createFile(contentBinary): Promise<any> {
 
 export async function updateFile(
   sha: string,
-  claFileContent,
+  clcFileContent,
   reactedCommitters: ReactedCommitterMap
 ): Promise<any> {
   const octokitInstance: InstanceType<typeof GitHub> =
@@ -47,8 +47,8 @@ export async function updateFile(
   const owner = context.issue.owner
   const repo = context.issue.repo
 
-  claFileContent?.signedContributors.push(...reactedCommitters.newSigned)
-  let contentString = JSON.stringify(claFileContent, null, 2)
+  clcFileContent?.signedContributors.push(...reactedCommitters.newSigned)
+  let contentString = JSON.stringify(clcFileContent, null, 2)
   let contentBinary = Buffer.from(contentString).toString('base64')
   await octokitInstance.repos.createOrUpdateFileContents({
     owner: input.getRemoteOrgName() || context.repo.owner,
@@ -62,7 +62,7 @@ export async function updateFile(
           // .replace('$pullRequestNo', pullRequestNo.toString())
           .replace('$owner', owner)
           .replace('$repo', repo)
-      : `@${context.actor} has signed the CLA in ${owner}/${repo}#${pullRequestNo}`,
+      : `@${context.actor} has signed the CLC in ${owner}/${repo}#${pullRequestNo}`,
     content: contentBinary,
     branch: input.getBranch()
   })

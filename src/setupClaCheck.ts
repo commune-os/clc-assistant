@@ -22,12 +22,12 @@ export async function setupClaCheck() {
   let committers = await getCommitters()
   committers = checkAllowList(committers)
 
-  const { claFileContent, sha } = (await getCLAFileContentandSHA(
+  const { clcFileContent, sha } = (await getCLCFileContentandSHA(
     committers,
     committerMap
   )) as ClafileContentAndSha
 
-  committerMap = prepareCommiterMap(committers, claFileContent) as CommitterMap
+  committerMap = prepareCommiterMap(committers, clcFileContent) as CommitterMap
 
   try {
     const reactedCommitters = (await prCommentSetup(
@@ -36,19 +36,19 @@ export async function setupClaCheck() {
     )) as ReactedCommitterMap
 
     if (reactedCommitters?.newSigned.length) {
-      /* pushing the recently signed  contributors to the CLA Json File */
-      await updateFile(sha, claFileContent, reactedCommitters)
+      /* pushing the recently signed  contributors to the CLC Json File */
+      await updateFile(sha, clcFileContent, reactedCommitters)
     }
     if (
       reactedCommitters?.allSignedFlag ||
       committerMap?.notSigned === undefined ||
       committerMap.notSigned.length === 0
     ) {
-      core.info(`All contributors have signed the CLA 📝 ✅ `)
+      core.info(`All contributors have signed the CLC 📝 ✅ `)
       return reRunLastWorkFlowIfRequired()
     } else {
       core.setFailed(
-        `Committers of Pull Request number ${context.issue.number} have to sign the CLA 📝`
+        `Committers of Pull Request number ${context.issue.number} have to sign the CLC 📝`
       )
     }
   } catch (err) {
@@ -56,11 +56,11 @@ export async function setupClaCheck() {
   }
 }
 
-async function getCLAFileContentandSHA(
+async function getCLCFileContentandSHA(
   committers: CommittersDetails[],
   committerMap: CommitterMap
 ): Promise<void | ClafileContentAndSha> {
-  let result, claFileContentString, claFileContent, sha
+  let result, clcFileContentString, clcFileContent, sha
   try {
     result = await getFileContent()
   } catch (error) {
@@ -75,9 +75,9 @@ async function getCLAFileContentandSHA(
     }
   }
   sha = result?.data?.sha
-  claFileContentString = Buffer.from(result.data.content, 'base64').toString()
-  claFileContent = JSON.parse(claFileContentString)
-  return { claFileContent, sha }
+  clcFileContentString = Buffer.from(result.data.content, 'base64').toString()
+  clcFileContent = JSON.parse(clcFileContentString)
+  return { clcFileContent, sha }
 }
 
 async function createClaFileAndPRComment(
@@ -106,22 +106,22 @@ async function createClaFileAndPRComment(
   )
   await prCommentSetup(committerMap, committers)
   throw new Error(
-    `Committers of pull request ${context.issue.number} have to sign the CLA`
+    `Committers of pull request ${context.issue.number} have to sign the CLC`
   )
 }
 
 function prepareCommiterMap(
   committers: CommittersDetails[],
-  claFileContent
+  clcFileContent
 ): CommitterMap {
   let committerMap = getInitialCommittersMap()
 
   committerMap.notSigned = committers.filter(
     committer =>
-      !claFileContent?.signedContributors.some(cla => committer.id === cla.id)
+      !clcFileContent?.signedContributors.some(clc => committer.id === clc.id)
   )
   committerMap.signed = committers.filter(committer =>
-    claFileContent?.signedContributors.some(cla => committer.id === cla.id)
+    clcFileContent?.signedContributors.some(clc => committer.id === clc.id)
   )
   committers.map(committer => {
     if (!committer.id) {
