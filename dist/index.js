@@ -1151,7 +1151,7 @@
         }
         exports.issue = issue;
         const CMD_STRING = '::';
-clcss Command {
+class Command {
           constructor(command, properties, message) {
             if (!command) {
               command = 'missing.command';
@@ -1632,7 +1632,7 @@ clcss Command {
         const http_client_1 = __nccwpck_require__(1404);
         const auth_1 = __nccwpck_require__(6758);
         const core_1 = __nccwpck_require__(2186);
-clcss OidcClient {
+class OidcClient {
     static createHttpClient(allowRetry = true, maxRetry = 10) {
       const requestOptions = {
         allowRetries: allowRetry,
@@ -1785,7 +1785,7 @@ exports.OidcClient = OidcClient;
   const { access, appendFile, writeFile } = fs_1.promises;
   exports.SUMMARY_ENV_VAR = 'GITHUB_STEP_SUMMARY';
   exports.SUMMARY_DOCS_URL = 'https://docs.github.com/actions/using-workflows/workflow-commands-for-github-actions#adding-a-job-summary';
-clcss Summary {
+class Summary {
     constructor() {
       this._buffer = '';
     }
@@ -2119,7 +2119,7 @@ clcss Summary {
   };
   Object.defineProperty(exports, "__esModule", ({ value: true }));
   exports.PersonalAccessTokenCredentialHandler = exports.BearerCredentialHandler = exports.BasicCredentialHandler = void 0;
-clcss BasicCredentialHandler {
+class BasicCredentialHandler {
     constructor(username, password) {
       this.username = username;
       this.password = password;
@@ -2141,7 +2141,7 @@ clcss BasicCredentialHandler {
     }
   }
   exports.BasicCredentialHandler = BasicCredentialHandler;
-clcss BearerCredentialHandler {
+class BearerCredentialHandler {
     constructor(token) {
       this.token = token;
     }
@@ -2164,7 +2164,7 @@ clcss BearerCredentialHandler {
     }
   }
   exports.BearerCredentialHandler = BearerCredentialHandler;
-clcss PersonalAccessTokenCredentialHandler {
+class PersonalAccessTokenCredentialHandler {
     constructor(token) {
       this.token = token;
     }
@@ -2295,7 +2295,7 @@ clcss PersonalAccessTokenCredentialHandler {
   const RetryableHttpVerbs = ['OPTIONS', 'GET', 'DELETE', 'HEAD'];
   const ExponentialBackoffCeiling = 10;
   const ExponentialBackoffTimeSlice = 5;
-clcss HttpClientError extends Error {
+class HttpClientError extends Error {
     constructor(message, statusCode) {
       super(message);
       this.name = 'HttpClientError';
@@ -2304,7 +2304,7 @@ clcss HttpClientError extends Error {
     }
   }
   exports.HttpClientError = HttpClientError;
-clcss HttpClientResponse {
+class HttpClientResponse {
     constructor(message) {
       this.message = message;
     }
@@ -2328,7 +2328,7 @@ clcss HttpClientResponse {
     return parsedUrl.protocol === 'https:';
   }
   exports.isHttps = isHttps;
-clcss HttpClient {
+class HttpClient {
     constructor(userAgent, handlers, requestOptions) {
       this._ignoreSslError = false;
       this._allowRedirects = true;
@@ -2883,7 +2883,7 @@ clcss HttpClient {
   exports.Context = void 0;
   const fs_1 = __nccwpck_require__(7147);
   const os_1 = __nccwpck_require__(2037);
-clcss Context {
+class Context {
     /**
      * Hydrate the context from the environment
      */
@@ -3163,7 +3163,7 @@ clcss Context {
   const RetryableHttpVerbs = ['OPTIONS', 'GET', 'DELETE', 'HEAD'];
   const ExponentialBackoffCeiling = 10;
   const ExponentialBackoffTimeSlice = 5;
-clcss HttpClientResponse {
+class HttpClientResponse {
     constructor(message) {
       this.message = message;
     }
@@ -3185,7 +3185,7 @@ clcss HttpClientResponse {
     return parsedUrl.protocol === 'https:';
   }
   exports.isHttps = isHttps;
-clcss HttpClient {
+class HttpClient {
     constructor(userAgent, handlers, requestOptions) {
       this._ignoreSslError = false;
       this._allowRedirects = true;
@@ -3819,7 +3819,7 @@ clcss HttpClient {
 
   const VERSION = "3.1.2";
 
-clcss Octokit {
+class Octokit {
     constructor(options = {}) {
       const hook = new beforeAfterHook.Collection();
       const requestDefaults = {
@@ -3888,14 +3888,14 @@ clcss Octokit {
       // https://stackoverflow.com/a/16345172
 
 
-      const clcssConstructor = this.constructor;
-      clcssConstructor.plugins.forEach(plugin => {
+      const classConstructor = this.constructor;
+      classConstructor.plugins.forEach(plugin => {
         Object.assign(this, plugin(this, options));
       });
     }
 
   static defaults(defaults) {
-      const OctokitWithDefaults = clcss extends this {
+      const OctokitWithDefaults = class extends this {
         constructor(...args) {
           const options = args[0] || {};
 
@@ -3924,7 +3924,7 @@ clcss Octokit {
       var _a;
 
       const currentPlugins = this.plugins;
-      const NewOctokit = (_a = clcss extends this { }, _a.plugins = currentPlugins.concat(newPlugins.filter(plugin => !currentPlugins.includes(plugin))), _a);
+      const NewOctokit = (_a = class extends this { }, _a.plugins = currentPlugins.concat(newPlugins.filter(plugin => !currentPlugins.includes(plugin))), _a);
       return NewOctokit;
     }
 
@@ -4340,7 +4340,7 @@ clcss Octokit {
 
   const VERSION = "4.5.3";
 
-clcss GraphqlError extends Error {
+class GraphqlError extends Error {
     constructor(request, response) {
       const message = response.data.errors[0].message;
       super(message);
@@ -4449,7 +4449,7 @@ clcss GraphqlError extends Error {
  * Error with extra properties to help with debugging
  */
 
-clcss RequestError extends Error {
+class RequestError extends Error {
     constructor(message, statusCode, options) {
       super(message); // Maintains proper stack trace (only available on V8)
 
@@ -4677,7 +4677,7 @@ clcss RequestError extends Error {
   const BUFFER = Symbol('buffer');
   const TYPE = Symbol('type');
 
-clcss Blob {
+class Blob {
     constructor() {
       this[TYPE] = '';
 
@@ -5323,7 +5323,7 @@ clcss Blob {
   /**
    * headers.js
    *
-   * Headers clcss offers convenient helpers
+   * Headers class offers convenient helpers
    */
 
   const invalidTokenRegex = /[^\^_`a-zA-Z\-0-9!#$%&'*+.|~]/;
@@ -5362,9 +5362,9 @@ clcss Blob {
   }
 
   const MAP = Symbol('map');
-clcss Headers {
+class Headers {
     /**
-    * Headers clcss
+    * Headers class
     *
     * @param   Object  headers  Response headers
     * @return  Void
@@ -5704,13 +5704,13 @@ clcss Headers {
   const STATUS_CODES = http.STATUS_CODES;
 
 /**
- * Response clcss
+ * Response class
  *
  * @param   Stream  body  Readable stream
  * @param   Object  opts  Response options
  * @return  Void
  */
-clcss Response {
+class Response {
     constructor() {
       let body = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
       let opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -5844,13 +5844,13 @@ clcss Response {
   }
 
 /**
- * Request clcss
+ * Request class
  *
  * @param   Mixed   input  Url or Request instance
  * @param   Object  init   Custom options
  * @return  Void
  */
-clcss Request {
+class Request {
     constructor(input) {
       let init = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
@@ -7973,7 +7973,7 @@ clcss Request {
 
   Object.defineProperty(exports, "__esModule", ({ value: true }));
 
-clcss Deprecation extends Error {
+class Deprecation extends Error {
     constructor(message) {
       super(message); // Maintains proper stack trace (only available on V8)
 
@@ -8215,7 +8215,7 @@ clcss Deprecation extends Error {
     /** Used to match unescaped characters in compiled string literals. */
     var reUnescapedString = /['\n\r\u2028\u2029\\]/g;
 
-    /** Used to compose unicode character clcsses. */
+    /** Used to compose unicode character classes. */
     var rsAstralRange = '\\ud800-\\udfff',
       rsComboMarksRange = '\\u0300-\\u036f',
       reComboHalfMarksRange = '\\ufe20-\\ufe2f',
@@ -13043,7 +13043,7 @@ clcss Deprecation extends Error {
        */
       function createCtor(Ctor) {
         return function () {
-          // Use a `switch` statement to work with clcss constructors. See
+          // Use a `switch` statement to work with class constructors. See
           // http://ecma-international.org/ecma-262/7.0/#sec-ecmascript-function-objects-call-thisargument-argumentslist
           // for more details.
           var args = arguments;
@@ -19329,7 +19329,7 @@ clcss Deprecation extends Error {
       };
 
       /**
-       * Checks if `value` is clcssified as an `Array` object.
+       * Checks if `value` is classified as an `Array` object.
        *
        * @static
        * @memberOf _
@@ -19354,7 +19354,7 @@ clcss Deprecation extends Error {
       var isArray = Array.isArray;
 
       /**
-       * Checks if `value` is clcssified as an `ArrayBuffer` object.
+       * Checks if `value` is classified as an `ArrayBuffer` object.
        *
        * @static
        * @memberOf _
@@ -19431,7 +19431,7 @@ clcss Deprecation extends Error {
       }
 
       /**
-       * Checks if `value` is clcssified as a boolean primitive or object.
+       * Checks if `value` is classified as a boolean primitive or object.
        *
        * @static
        * @memberOf _
@@ -19472,7 +19472,7 @@ clcss Deprecation extends Error {
       var isBuffer = nativeIsBuffer || stubFalse;
 
       /**
-       * Checks if `value` is clcssified as a `Date` object.
+       * Checks if `value` is classified as a `Date` object.
        *
        * @static
        * @memberOf _
@@ -19696,7 +19696,7 @@ clcss Deprecation extends Error {
       }
 
       /**
-       * Checks if `value` is clcssified as a `Function` object.
+       * Checks if `value` is classified as a `Function` object.
        *
        * @static
        * @memberOf _
@@ -19842,7 +19842,7 @@ clcss Deprecation extends Error {
       }
 
       /**
-       * Checks if `value` is clcssified as a `Map` object.
+       * Checks if `value` is classified as a `Map` object.
        *
        * @static
        * @memberOf _
@@ -20043,10 +20043,10 @@ clcss Deprecation extends Error {
       }
 
       /**
-       * Checks if `value` is clcssified as a `Number` primitive or object.
+       * Checks if `value` is classified as a `Number` primitive or object.
        *
        * **Note:** To exclude `Infinity`, `-Infinity`, and `NaN`, which are
-       * clcssified as numbers, use the `_.isFinite` method.
+       * classified as numbers, use the `_.isFinite` method.
        *
        * @static
        * @memberOf _
@@ -20115,7 +20115,7 @@ clcss Deprecation extends Error {
       }
 
       /**
-       * Checks if `value` is clcssified as a `RegExp` object.
+       * Checks if `value` is classified as a `RegExp` object.
        *
        * @static
        * @memberOf _
@@ -20165,7 +20165,7 @@ clcss Deprecation extends Error {
       }
 
       /**
-       * Checks if `value` is clcssified as a `Set` object.
+       * Checks if `value` is classified as a `Set` object.
        *
        * @static
        * @memberOf _
@@ -20184,7 +20184,7 @@ clcss Deprecation extends Error {
       var isSet = nodeIsSet ? baseUnary(nodeIsSet) : baseIsSet;
 
       /**
-       * Checks if `value` is clcssified as a `String` primitive or object.
+       * Checks if `value` is classified as a `String` primitive or object.
        *
        * @static
        * @since 0.1.0
@@ -20206,7 +20206,7 @@ clcss Deprecation extends Error {
       }
 
       /**
-       * Checks if `value` is clcssified as a `Symbol` primitive or object.
+       * Checks if `value` is classified as a `Symbol` primitive or object.
        *
        * @static
        * @memberOf _
@@ -20228,7 +20228,7 @@ clcss Deprecation extends Error {
       }
 
       /**
-       * Checks if `value` is clcssified as a typed array.
+       * Checks if `value` is classified as a typed array.
        *
        * @static
        * @memberOf _
@@ -20268,7 +20268,7 @@ clcss Deprecation extends Error {
       }
 
       /**
-       * Checks if `value` is clcssified as a `WeakMap` object.
+       * Checks if `value` is classified as a `WeakMap` object.
        *
        * @static
        * @memberOf _
@@ -20289,7 +20289,7 @@ clcss Deprecation extends Error {
       }
 
       /**
-       * Checks if `value` is clcssified as a `WeakSet` object.
+       * Checks if `value` is classified as a `WeakSet` object.
        *
        * @static
        * @memberOf _
@@ -26612,7 +26612,7 @@ clcss Deprecation extends Error {
 
   const usm = __nccwpck_require__(2158);
 
-  exports.implementation = clcss URLImpl {
+  exports.implementation = class URLImpl {
     constructor(constructorArgs) {
       const url = constructorArgs[0];
       const base = constructorArgs[1];
